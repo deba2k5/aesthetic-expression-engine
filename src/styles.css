@@ -19,6 +19,8 @@
  */
 
 @theme inline {
+  --font-display: "Syne", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -62,26 +64,26 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0rem;
+  --background: oklch(0.13 0.006 25);
+  --foreground: oklch(0.93 0.02 70);
+  --card: oklch(0.13 0.006 25);
+  --card-foreground: oklch(0.93 0.02 70);
+  --popover: oklch(0.13 0.006 25);
+  --popover-foreground: oklch(0.93 0.02 70);
+  --primary: oklch(0.58 0.23 28);
+  --primary-foreground: oklch(0.98 0.01 70);
+  --secondary: oklch(0.4 0.16 27);
+  --secondary-foreground: oklch(0.12 0.004 25);
+  --muted: oklch(0.2 0.01 25);
+  --muted-foreground: oklch(0.68 0.02 70);
+  --accent: oklch(0.93 0.02 70);
+  --accent-foreground: oklch(0.13 0.006 25);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.93 0.02 70 / 15%);
+  --input: oklch(0.93 0.02 70 / 20%);
+  --ring: oklch(0.58 0.23 28);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +142,109 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
+    letter-spacing: 0;
+    margin: 0;
   }
+}
+
+html { scroll-behavior: smooth; }
+
+.poster-nav {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.poster-hero {
+  position: relative;
+  display: flex;
+  min-height: 96svh;
+  align-items: flex-end;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  padding: 8rem 1.5rem 2rem;
+}
+
+.hero-vignette {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--background) 15%, transparent), color-mix(in oklab, var(--background) 12%, transparent) 40%, var(--background) 100%);
+}
+
+.poster-tear {
+  position: absolute;
+  inset: 0 0 0 auto;
+  z-index: 10;
+  display: none;
+  width: 48%;
+  overflow: hidden;
+  clip-path: polygon(24% 0, 100% 0, 100% 100%, 0 100%, 17% 72%, 5% 53%, 18% 27%);
+}
+
+.poster-index {
+  position: absolute;
+  left: 1.5rem;
+  top: 7rem;
+  z-index: 20;
+  writing-mode: vertical-rl;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  opacity: 0.65;
+}
+
+.poster-cta {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--foreground);
+  color: var(--background);
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+.poster-cta:hover { background: var(--primary); color: var(--primary-foreground); }
+
+.program-panel {
+  display: flex;
+  min-height: 44rem;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--background);
+  padding: 2rem;
+  transition: background-color 300ms ease;
+}
+
+.program-panel:hover { background: color-mix(in oklab, var(--primary) 7%, var(--background)); }
+
+@keyframes poster-rise { from { opacity: 0; transform: translateY(2.5rem); } to { opacity: 1; transform: translateY(0); } }
+@keyframes poster-clip { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0); } }
+@keyframes poster-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.animate-reveal { animation: poster-rise 900ms cubic-bezier(.16,1,.3,1) both; }
+.animate-reveal-delayed { animation: poster-rise 900ms cubic-bezier(.16,1,.3,1) 180ms both; }
+.animate-clip { animation: poster-clip 1.2s cubic-bezier(.16,1,.3,1) both; }
+.marquee-track { animation: poster-marquee 26s linear infinite; }
+
+@media (min-width: 768px) {
+  .poster-nav { position: fixed; padding: 2rem 3rem; mix-blend-mode: difference; }
+  .poster-hero { min-height: 100svh; padding: 9rem 3rem 3rem; }
+  .poster-tear { display: block; }
+  .poster-index { left: auto; right: 3rem; top: 8rem; }
+  .poster-cta { width: auto; min-width: 18rem; padding: 1.5rem 2rem; }
+  .program-panel { padding: 4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-reveal, .animate-reveal-delayed, .animate-clip, .marquee-track { animation: none; }
 }
