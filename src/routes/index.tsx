@@ -77,7 +77,7 @@ function MayaHome() {
 
         <span className="poster-index">01 / A LIVE CULTURAL ASSEMBLY</span>
         <div className="relative z-20 w-full max-w-[92rem]">
-          <h1 className="animate-reveal font-display text-[clamp(4.25rem,14vw,12rem)] font-extrabold uppercase leading-[0.78]">
+          <h1 className="animate-reveal font-display text-5xl font-extrabold uppercase leading-[0.82] sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem]">
             <span className="block">Shaping</span>
             <span className="ml-[0.3em] block text-primary">Silence</span>
           </h1>
