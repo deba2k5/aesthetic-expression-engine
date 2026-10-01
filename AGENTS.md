@@ -9,4 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep the public experience as a single campaign-poster route with generated artwork imported from `src/assets`; this preserves the chosen broken-poster composition and avoids generic section templates.
+- The site is a set of campaign-poster routes (`/`, `/events`, `/schedule`, `/gallery`) sharing the floating `SiteNav` and contact `SiteFooter` from `src/components/site`, rendered in `__root.tsx`. Keep the broken-poster composition (torn clip-paths, Syne display type, square corners, generated artwork from `src/assets`) and avoid generic section templates.
